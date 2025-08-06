@@ -1,0 +1,62 @@
+{% include "main/header.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume | My Portfolio</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        h2 {
+            color: #1c1f23;
+            margin-bottom: 20px;
+        }
+
+        a.back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a.back-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Resume</h2>
+        <p><a href="{% static 'main/Tushar Resume.pdf' %}" download>Download My Resume</a></p>
+        <embed src="{% static 'main/Tushar Resume.pdf' %}" width="100%" height="600px" type="application/pdf"/>
+        <p><a class="back-link" href="/">← Back to Home</a></p>
+    </div>
+
+    <footer>
+        &copy; {{ now|date:"Y" }} Tushar Devkaran. All rights reserved.
+    </footer>
+</body>
+</html>

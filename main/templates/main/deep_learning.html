@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tushar Devkaran | Portfolio</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            scroll-behavior: smooth;
+        }
+        header {
+            background-color: #8adee6;
+            padding: 2px 0;
+            position: fixed;
+            width: 100%;
+            border-radius: 15px;
+            top: 0;
+            z-index: 1000;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            transition: all 0.3s ease-in-out;
+        }
+        .header-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden; /* ensures child corners are clipped */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        .portfolio-title {
+            text-align: center;
+            padding: 30px 0 20px;
+            background: linear-gradient(90deg, #96c8df, #96d3e6, #93c1d8);
+            color: #0c0c0c;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 32px;
+        }
+        .portfolio-title h1 {
+            margin: 0;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .navbar {
+            background-color: #0eedf5;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 100px auto 60px auto;
+            background-color: #88e4e4;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 16px 32px rgba(158, 207, 216, 0.06);
+            text-align: center;
+        }
+        nav {
+            
+            text-align: center;
+        }
+        nav a {
+            color: #080808;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            display: inline-block;
+            transition: 0.3s;   
+        }
+        nav a:hover,
+        nav a.active {
+        color: #d45a5a;
+        text-shadow: 0 0 10px #30a7e2;
+        transform: scale(1.2);
+    }
+        .section1 {
+            margin-top: 110px;
+            padding: 50px 20px;
+            background-color: #648e9b;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .section2 {
+            margin-top: 20px;
+            padding: 50px 20px;
+            background-color: #648e9b;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .content {
+            max-width: 900px;
+            margin: auto;
+            background: rgb(181, 212, 219);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #6a727a;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav >
+    <a href="#home"><h3>Home</h3></a>
+    <a href="#projects"><h3>Project</h3></a>
+    <a href="#resume"><h3>Resume</h3></a>
+    <a href="#contact"><h3>Contact</h3></a>
+</nav>
+</header>
+<footer>
+    &copy; {{ now|date:"Y" }} 2025 Tushar Devkaran. All rights reserved.
+</footer>
+</body>
+</html>

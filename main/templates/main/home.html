@@ -1,0 +1,319 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tushar Devkaran | Portfolio</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            scroll-behavior: smooth;
+        }
+        header {
+            background-color: #8adee6;
+            padding: 2px 0;
+            position: fixed;
+            width: 100%;
+            border-radius: 15px;
+            top: 0;
+            z-index: 1000;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            transition: all 0.3s ease-in-out;
+        }
+        .header-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden; /* ensures child corners are clipped */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        .portfolio-title {
+            text-align: center;
+            padding: 30px 0 20px;
+            background: linear-gradient(90deg, #96c8df, #96d3e6, #93c1d8);
+            color: #0c0c0c;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-size: 32px;
+        }
+        .portfolio-title h1 {
+            margin: 0;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .navbar {
+            background-color: #0eedf5;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 100px auto 60px auto;
+            background-color: #88e4e4;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 16px 32px rgba(158, 207, 216, 0.06);
+            text-align: center;
+        }
+        nav {
+            
+            text-align: center;
+        }
+        nav a {
+            color: #080808;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            display: inline-block;
+            transition: 0.3s;   
+        }
+        nav a:hover,
+        nav a.active {
+        color: #d45a5a;
+        text-shadow: 0 0 10px #30a7e2;
+        transform: scale(1.2);
+    }
+        .section1 {
+            margin-top: 110px;
+            padding: 50px 20px;
+            background-color: #648e9b;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .section2 {
+            margin-top: 20px;
+            padding: 50px 20px;
+            background-color: #648e9b;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .content {
+            max-width: 900px;
+            margin: auto;
+            background: rgb(181, 212, 219);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+        }
+        .flip-card {
+            background-color: transparent;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #1c1f23;
+        }
+        .flip-card-front img,
+        .flip-card-back img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top; /* Ensures face is visible */
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #1c1f23;
+            transition: all 0.3s ease;
+        }
+        h1:hover {
+            color: #a5c4e7;
+            transform: scale(1.05);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #555;
+            font-weight: normal;
+            margin-bottom: 30px;
+        }
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #6a727a;
+            color: #ccc;
+        }
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        .resume-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav >
+    <a href="#home"><h3>Home</h3></a>
+    <a href="#projects"><h3>Project</h3></a>
+    <a href="#resume"><h3>Resume</h3></a>
+    <a href="#contact"><h3>Contact</h3></a>
+</nav>
+</header>
+<section id="home" class="section1">
+    <div class="content">
+        <!-- Flip Image Card -->
+        <div class="flip-card">
+            <div class="flip-card-inner">
+                <!-- Front Photo -->
+                <div class="flip-card-front">
+                    <img src="{% static 'images/11.jpg' %}" alt="Profile Photo">
+                </div>
+                <!-- Back Avatar -->
+                <div class="flip-card-back">
+                    <img src="{% static 'images/12.png' %}" alt="Avatar">
+                </div>
+            </div>
+        </div>
+        <h1>Hello, I'm Tushar Devkaran 👋</h1>
+        <h2>Data-Driven Professional | Python Automation Expert | ML & Deep Learning Developer | GenAI Enthusiast</h2>
+        <p style="text-align: justify;">I'm a passionate and results-driven professional specializing in data-driven solutions, Python automation, and interactive dashboard development.</p>   
+        <p style="text-align: justify;">🔍 With a strong foundation in both technical and analytical skills, I transform raw data into actionable insights that drive smarter decisions. Whether it’s automating repetitive tasks with Python, building dynamic Power BI dashboards, or developing end-to-end data pipelines — I strive to create impactful, scalable, and user-friendly solutions.</p>  
+        <p>  
+           🎯 This portfolio highlights:
+        </p>
+        <p> 
+            👉  My hands-on technical projects across domains like business analytics, data visualization, and web development
+        </p>
+        <p>   
+            👉  My academic background in B.Tech & MBA.
+        </p>
+        <p>   
+            👉  An up-to-date resume for collaboration and hiring opportunities
+        </p>
+        <p>   
+            👉  Multiple ways to connect, collaborate, or contact me
+        </p>
+        <p>   
+        Feel free to explore, download, and get in touch — let’s turn ideas into innovation! </p>
+        </p>
+    </div>
+</section>
+    <section id="projects" class="section2">
+        <div class="content">
+            <h1>Projects</h1>
+            <ul>
+                <li><a href="{% url 'data_visualization' %}"><h3>Data Visualization</h3></a></li>
+                <li><a href="{% url 'python' %}"><h3>Python using Django</h4></a></li>
+                <li><a href="{% url 'machine_learning' %}"><h3>Machine Learning</h3></a></li>
+                <li><a href="{% url 'deep_learning' %}"><h3>Deep Learning & GenAI</h3></a></li>
+            </ul>
+        </div>
+    </section>
+    
+    <section id="resume" class="section2">
+        <div class="content">
+            <h1>Resume</h1>
+            <p><a class="resume-link" href="{% static 'main/Tushar Resume.pdf' %}" download><h3>📄 Download My Resume</h3></a></p>
+            <embed src="{% static 'main/Tushar Resume.pdf' %}" width="100%" height="500px" type="application/pdf"/>
+        </div>
+    </section>
+    <section id="contact" class="section2">
+        <div class="content">
+            <h1>Contact Details</h1>
+            <p>Email: tushardevkaran@gmail.com</p>
+            <p>Phone: 8091700280</p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/tushar-devkaran-76b0951a7" target="_blank">Tushar Devkaran</a></p>
+            <p>Address: Village Jhandi, P.O. Aghar, Tehsil & District Hamirpur, Himachal Pradesh</p>
+        </div>
+    </section>
+</main>
+<footer >
+    &copy; {{ now|date:"Y" }} 2025 Tushar Devkaran. All rights reserved.
+</footer>
+<script>
+    window.onload = function () {
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 4000);
+    };
+    document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll("nav a");
+        function onScroll() {
+            let scrollPos = window.scrollY + 150;
+            sections.forEach(section => {
+                if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove("active");
+                        if (link.getAttribute("href").substring(1) === section.id) {
+                            link.classList.add("active");
+                        }
+                    });
+                }
+            });
+        }
+        window.addEventListener("scroll", onScroll);
+        onScroll();
+    });
+</script>
+</body>
+</html>
