@@ -1,4 +1,6 @@
 from pathlib import Path
+import os
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,6 +28,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'portfolio.urls'
@@ -46,14 +49,14 @@ TEMPLATES = [
     },
 ]
 STATIC_URL='/static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_DIRS=[BASE_DIR/'static']
+
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        'default': dj_database_url.config(default=os.getenv("DATABASE_URL"))
     }
 }
 
@@ -65,6 +68,7 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [BASE_DIR / 'main/static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
